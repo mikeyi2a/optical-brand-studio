@@ -1,0 +1,6 @@
+import {writeFileSync} from 'node:fs';
+import {artwork,defaults} from '../src/artwork.ts';
+const studies=[['01-hypnotic',{},'pattern'],['02-radial',{kind:'Radial',density:32,background:'#f0be36'},'pattern'],['03-afterimage',{kind:'Rings',density:22,repeat:2,foreground:'#e8e7df',background:'#20211e'},'pattern'],['04-restricted',{kind:'Hazard',density:8,scale:100,background:'#f0be36'},'pattern'],['05-frequency',{kind:'Wave',density:26,twist:140,scale:100,foreground:'#263a2d',background:'#c8d2ad'},'pattern'],['06-signal',{chromatic:true,texture:42,foreground:'#e5f23c',background:'#171815'},'signal'],['07-look-again',{format:'portrait'},'poster'],['08-change-perspective',{kind:'Radial',density:24,format:'portrait',headline:'CHANGE\nYOUR\nPERSPECTIVE.',background:'#e8e7df'},'poster']];
+studies.push(['09-wireframe-globe',{foreground:'#e5f23c',background:'#171815',transparent:true,annotations:false},'globe'],['10-glitch-text',{showPattern:false,transparent:true,annotations:false,foreground:'#e5f23c',background:'#171815',textGlitch:55,texture:30},'signal']);
+for(const [name,settings,mode] of studies)writeFileSync(`public/assets/${name}.svg`,artwork({...defaults,...settings},mode));
+console.log(`Generated ${studies.length} editable SVG assets.`);
